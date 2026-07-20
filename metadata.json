@@ -1,0 +1,6 @@
+{
+  "name": "Инструментальный массаж",
+  "description": "Современный онлайн-курс по инструментальному массажу (IASTM) для профессиональных массажистов. Обучение техникам снижения нагрузки на суставы и руки.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
