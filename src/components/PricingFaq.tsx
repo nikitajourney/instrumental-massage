@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Check, HelpCircle, ChevronDown, Send, Lock, Gift, Star, Phone, Smartphone, MessageCircle, Heart, User, CheckCircle, Mail, ArrowRight } from 'lucide-react';
 import { FAQS, APP_METADATA } from '../data';
 import { InquiryFormData } from '../types';
+import { submitLead } from '../services/leadCapture';
 
 export const PricingFaq: React.FC = () => {
   // FAQ accordion open state
@@ -31,7 +32,7 @@ export const PricingFaq: React.FC = () => {
     setFormError('');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim()) {
       setFormError('Пожалуйста, введите ваше имя');
@@ -49,20 +50,16 @@ export const PricingFaq: React.FC = () => {
     setIsSubmitting(true);
     setFormError('');
 
-    fetch('/api/lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+    try {
+      const data = await submitLead({
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
         messenger: formData.messenger,
         coursePrice: APP_METADATA.priceCurrent
-      })
-    })
-    .then(async (res) => {
-      const data = await res.json();
-      if (res.ok && data.success) {
+      });
+
+      if (data.success) {
         setIsSubmitted(true);
         if (data.notifications && data.notifications.telegram) {
           setTgConfigured(data.notifications.telegram.configured);
@@ -73,25 +70,15 @@ export const PricingFaq: React.FC = () => {
             setTgError(errText);
           }
         }
-        // Save locally to simulate durable application saving
-        const existingInquiries = JSON.parse(localStorage.getItem('massage_inquiries') || '[]');
-        existingInquiries.push({
-          ...formData,
-          price: APP_METADATA.priceCurrent,
-          date: new Date().toISOString()
-        });
-        localStorage.setItem('massage_inquiries', JSON.stringify(existingInquiries));
       } else {
         setFormError(data.error || 'Произошла ошибка при отправке заявки.');
       }
-    })
-    .catch((err) => {
+    } catch (err) {
       console.error(err);
-      setFormError('Не удалось связаться с сервером для отправки заявки.');
-    })
-    .finally(() => {
+      setFormError('Не удалось отправить заявку автоматически. Напишите нам в Telegram или Max ниже, мы быстро ответим.');
+    } finally {
       setIsSubmitting(false);
-    });
+    }
   };
 
   const handleResetForm = () => {
@@ -287,7 +274,7 @@ export const PricingFaq: React.FC = () => {
                     {isSubmitting ? (
                       <>
                         <div className="w-5 h-5 border-2 border-graphite-950 border-t-transparent rounded-full animate-spin" />
-                        <span>Обработка платежа...</span>
+                        <span>Отправка заявки...</span>
                       </>
                     ) : (
                       <>

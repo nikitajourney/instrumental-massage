@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, User, Phone, Mail, Smartphone, Send, Lock, CheckCircle, AlertCircle, MessageCircle, ArrowRight } from 'lucide-react';
 import { APP_METADATA } from '../data';
+import { submitLead } from '../services/leadCapture';
 
 interface LeadModalProps {
   defaultPrice?: string;
@@ -76,21 +77,15 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
-          email: formData.email,
-          messenger: formData.messenger,
-          coursePrice: defaultPrice
-        })
+      const data = await submitLead({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        messenger: formData.messenger,
+        coursePrice: defaultPrice
       });
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
+      if (data.success) {
         setIsSuccess(true);
         if (data.notifications && data.notifications.telegram) {
           setTgConfigured(data.notifications.telegram.configured);
@@ -101,21 +96,12 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
             setTgError(errText);
           }
         }
-        
-        // Also save to localStorage as local backup
-        const existingInquiries = JSON.parse(localStorage.getItem('massage_inquiries') || '[]');
-        existingInquiries.push({
-          ...formData,
-          price: defaultPrice,
-          date: new Date().toISOString()
-        });
-        localStorage.setItem('massage_inquiries', JSON.stringify(existingInquiries));
       } else {
         setErrorMessage(data.error || 'Произошла ошибка при отправке заявки. Пожалуйста, попробуйте еще раз.');
       }
     } catch (err: any) {
       console.error('Submit error:', err);
-      setErrorMessage('Не удалось связаться с сервером. Проверьте подключение к сети.');
+      setErrorMessage('Не удалось отправить заявку автоматически. Напишите нам в Telegram или Max ниже, мы быстро ответим.');
     } finally {
       setIsSubmitting(false);
     }
