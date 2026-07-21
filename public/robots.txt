@@ -3,4 +3,4 @@ Allow: /
 
 Sitemap: https://instrument-massage.ru/sitemap.xml
 Host: instrument-massage.ru
-Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&vkclid&fbclid&from /
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&utm_referrer&yclid&vkclid&fbclid&from&openstat&_ym_debug /

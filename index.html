@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#0f766e" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="application-name" content="Инструментальный массаж" />
+    <meta name="apple-mobile-web-app-title" content="Инструментальный массаж" />
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="geo.region" content="RU" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="manifest" href="./manifest.json" />
     <link rel="canonical" href="https://instrument-massage.ru/" />
+    <link rel="alternate" hreflang="ru-RU" href="https://instrument-massage.ru/" />
+    <link rel="alternate" hreflang="x-default" href="https://instrument-massage.ru/" />
     <link rel="preload" as="image" href="/src/assets/images/optimized/hero.webp" type="image/webp" />
 
     <title>Инструментальный массаж - онлайн-курс для массажистов</title>
@@ -29,7 +37,12 @@
       content="Освойте инструментальный массаж, снизьте нагрузку на руки и добавьте премиальную услугу в прайс. 5 модулей, 20+ видеоуроков, доступ 6 месяцев."
     />
     <meta property="og:image" content="https://instrument-massage.ru/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://instrument-massage.ru/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Онлайн-курс инструментального массажа для массажистов" />
+    <meta property="og:updated_time" content="2026-07-21T19:30:00+05:00" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Инструментальный массаж - онлайн-курс для массажистов" />
@@ -38,39 +51,181 @@
       content="Практический онлайн-курс по инструментальному массажу: техники скребком, защита рук массажиста, рост среднего чека."
     />
     <meta name="twitter:image" content="https://instrument-massage.ru/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Онлайн-курс инструментального массажа для массажистов" />
 
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        "name": "Инструментальный массаж",
-        "description": "Онлайн-курс инструментального массажа для массажистов: 5 модулей, 7 академических часов, 20+ практических видеоуроков и пошаговые протоколы.",
-        "url": "https://instrument-massage.ru/",
-        "inLanguage": "ru-RU",
-        "provider": {
+      [
+        {
+          "@context": "https://schema.org",
           "@type": "Organization",
+          "@id": "https://instrument-massage.ru/#organization",
           "name": "Школа массажа Дмитрия Катаева",
           "url": "https://instrument-massage.ru/",
-          "telephone": "+79090714777"
+          "telephone": "+79090714777",
+          "email": "academia.massage@yandex.ru",
+          "logo": "https://instrument-massage.ru/favicon.svg",
+          "areaServed": "RU"
         },
-        "offers": {
-          "@type": "Offer",
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "@id": "https://instrument-massage.ru/#website",
+          "name": "Инструментальный массаж",
           "url": "https://instrument-massage.ru/",
-          "price": "4500",
-          "priceCurrency": "RUB",
-          "availability": "https://schema.org/InStock",
-          "category": "online course"
+          "inLanguage": "ru-RU",
+          "publisher": {
+            "@id": "https://instrument-massage.ru/#organization"
+          }
         },
-        "hasCourseInstance": {
-          "@type": "CourseInstance",
-          "courseMode": "online",
-          "courseWorkload": "PT7H"
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": "https://instrument-massage.ru/#webpage",
+          "url": "https://instrument-massage.ru/",
+          "name": "Инструментальный массаж - онлайн-курс для массажистов",
+          "description": "Онлайн-курс инструментального массажа для массажистов: 5 модулей, 7 академических часов, 20+ видеоуроков, техники работы со скребком и снижение нагрузки на руки.",
+          "isPartOf": {
+            "@id": "https://instrument-massage.ru/#website"
+          },
+          "about": {
+            "@id": "https://instrument-massage.ru/#course"
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://instrument-massage.ru/og-image.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "inLanguage": "ru-RU",
+          "dateModified": "2026-07-21"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "@id": "https://instrument-massage.ru/#course",
+          "name": "Инструментальный массаж",
+          "alternateName": "Онлайн-курс инструментального массажа для массажистов",
+          "description": "Практический онлайн-курс по инструментальному массажу: работа со скребком, фасциальные техники, эргономика рук массажиста, протоколы по зонам тела и повышение среднего чека.",
+          "url": "https://instrument-massage.ru/",
+          "image": "https://instrument-massage.ru/og-image.jpg",
+          "inLanguage": "ru-RU",
+          "provider": {
+            "@id": "https://instrument-massage.ru/#organization"
+          },
+          "teaches": [
+            "инструментальный массаж",
+            "массаж скребком",
+            "IASTM",
+            "фасциальные техники",
+            "эргономика рук массажиста"
+          ],
+          "audience": {
+            "@type": "Audience",
+            "audienceType": "массажисты, телесные практики, специалисты по реабилитации"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://instrument-massage.ru/#pricing",
+            "price": "4500",
+            "priceCurrency": "RUB",
+            "availability": "https://schema.org/InStock",
+            "category": "online course"
+          },
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "courseWorkload": "PT7H",
+            "instructor": {
+              "@type": "Person",
+              "name": "Дмитрий Катаев"
+            }
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "@id": "https://instrument-massage.ru/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Подойдет ли курс новичкам?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Да, курс выстроен последовательно: теория, безопасность, техника работы инструментом и практические протоколы."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Сколько длится обучение?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Общая продолжительность видеоматериалов составляет 7 академических часов, курс разбит на 20+ компактных уроков."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "На какой срок предоставляется доступ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Доступ к видеоматериалам, схемам и протоколам предоставляется на 6 месяцев."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Будет ли выдан сертификат после обучения?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "После прохождения курса формируется именной электронный сертификат, также можно заказать печатный оригинал."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Как быстро окупится курс?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "При стоимости процедуры инструментального массажа около 1500 рублей курс может окупиться примерно за 3 сеанса."
+              }
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "@id": "https://instrument-massage.ru/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Инструментальный массаж",
+              "item": "https://instrument-massage.ru/"
+            }
+          ]
         }
-      }
+      ]
     </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>Инструментальный массаж - онлайн-курс для массажистов</h1>
+        <p>
+          Практический онлайн-курс по инструментальному массажу для массажистов:
+          5 модулей, 7 академических часов, 20+ видеоуроков, техники работы со
+          скребком, протоколы по зонам тела и доступ на 6 месяцев.
+        </p>
+        <h2>Что входит в курс</h2>
+        <ul>
+          <li>Подготовка тканей и безопасная работа инструментом.</li>
+          <li>Фасциальные техники, IASTM и массаж скребком.</li>
+          <li>Протоколы для спины, шеи, рук, грудной клетки и ног.</li>
+          <li>Эргономика для снижения нагрузки на кисти массажиста.</li>
+          <li>Именной сертификат после прохождения курса.</li>
+        </ul>
+        <h2>Стоимость и контакты</h2>
+        <p>Стоимость курса: 4500 рублей. Телефон: +7 (909) 071-47-77. Email: academia.massage@yandex.ru.</p>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
