@@ -374,7 +374,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
                         <span>Telegram не настроен</span>
                       </span>
                       <p className="text-[11px] leading-relaxed text-graphite-300">
-                        Заявка сохранена, но не отправлена в Telegram. Добавьте переменные <b>TELEGRAM_BOT_TOKEN</b> и <b>TELEGRAM_CHAT_ID</b> в настройки секретов (Secrets panel) в Google AI Studio.
+                        Заявка сохранена, но не отправлена в Telegram. Добавьте переменные <b>TELEGRAM_BOT_TOKEN</b> и <b>TELEGRAM_CHAT_ID</b> в переменные окружения backend-хостинга.
                       </p>
                     </div>
                   )}

@@ -403,7 +403,7 @@ export const PricingFaq: React.FC = () => {
                         <span>Telegram не настроен</span>
                       </span>
                       <p className="text-[11px] leading-relaxed text-graphite-300">
-                        Заявка сохранена, но не отправлена в Telegram. Задайте <b>TELEGRAM_BOT_TOKEN</b> и <b>TELEGRAM_CHAT_ID</b> в настройках секретов в Google AI Studio.
+                        Заявка сохранена, но не отправлена в Telegram. Задайте <b>TELEGRAM_BOT_TOKEN</b> и <b>TELEGRAM_CHAT_ID</b> в переменных окружения backend-хостинга.
                       </p>
                     </div>
                   )}

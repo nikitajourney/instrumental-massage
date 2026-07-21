@@ -59,8 +59,18 @@ async function startServer() {
     console.log(`[Lead received] Name: ${name}, Phone: ${phone}, Email: ${emailVal}, Price: ${price} RUB, Messenger: ${selectedMessenger}`);
 
     let telegramSent = false;
+    let vkSent = false;
     let emailSent = false;
     let errors: string[] = [];
+
+    const plainLeadText =
+      `Новая заявка на курс!\n\n` +
+      `Имя: ${name}\n` +
+      `Телефон: ${phone}\n` +
+      `Email: ${emailVal}\n` +
+      `Связь: ${selectedMessenger}\n` +
+      `Сумма: ${price} ₽\n` +
+      `Дата: ${new Date().toLocaleString('ru-RU')}`;
 
     // 1. Send via Telegram Bot API
     const tgToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -103,7 +113,50 @@ async function startServer() {
       console.log("Telegram integration skipped (TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is missing).");
     }
 
-    // 2. Send via Email (SMTP using Nodemailer)
+    // 2. Send via VK API. Requires a backend-hosted community token, never a VITE_* variable.
+    const vkToken = process.env.VK_ACCESS_TOKEN;
+    const vkPeerId = process.env.VK_PEER_ID;
+    const vkApiVersion = process.env.VK_API_VERSION || "5.199";
+
+    if (vkToken && vkPeerId) {
+      try {
+        const vkBody = new URLSearchParams({
+          access_token: vkToken,
+          v: vkApiVersion,
+          peer_id: vkPeerId,
+          random_id: String(Math.floor(Math.random() * 2147483647)),
+          message: `🔔 ${plainLeadText}`
+        });
+
+        const response = await fetch("https://api.vk.com/method/messages.send", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: vkBody
+        });
+        const result = await response.json() as {
+          response?: number;
+          error?: { error_code?: number; error_msg?: string };
+        };
+
+        if (response.ok && result.response) {
+          vkSent = true;
+          console.log("VK notification sent successfully.");
+        } else {
+          const vkError = result.error
+            ? `VK error ${result.error.error_code || ""}: ${result.error.error_msg || "unknown error"}`
+            : "VK API returned an empty response.";
+          console.error(vkError);
+          errors.push(vkError);
+        }
+      } catch (err: any) {
+        console.error("Failed to send to VK:", err);
+        errors.push(`VK exception: ${err.message}`);
+      }
+    } else {
+      console.log("VK integration skipped (VK_ACCESS_TOKEN or VK_PEER_ID is missing).");
+    }
+
+    // 3. Send via Email (SMTP using Nodemailer)
     const smtpHost = process.env.SMTP_HOST;
     const smtpPort = process.env.SMTP_PORT;
     const smtpUser = process.env.SMTP_USER;
@@ -126,7 +179,7 @@ async function startServer() {
           from: smtpUser,
           to: emailTo,
           subject: `Новая заявка на обучение: ${name}`,
-          text: `Новая заявка на курс!\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${emailVal}\nСпособ связи: ${selectedMessenger}\nСтоимость: ${price} ₽\nДата: ${new Date().toLocaleString('ru-RU')}`,
+          text: plainLeadText,
           html: `<div style="font-family: sans-serif; padding: 20px; background-color: #f4f4f4;">
             <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 12px; border: 1px solid #e0e0e0;">
               <h2 style="color: #0d9488; margin-top: 0;">🔔 Новая заявка на обучение!</h2>
@@ -174,6 +227,7 @@ async function startServer() {
       data: { name, phone, email: emailVal, price, messenger: selectedMessenger },
       notifications: {
         telegram: { sent: telegramSent, configured: !!(tgToken && tgChatId) },
+        vk: { sent: vkSent, configured: !!(vkToken && vkPeerId) },
         email: { sent: emailSent, configured: !!(smtpHost && smtpUser && smtpPass && emailTo) }
       },
       errors: errors.length > 0 ? errors : null

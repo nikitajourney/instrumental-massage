@@ -6,6 +6,12 @@ type LeadCaptureResult = {
     telegram?: {
       configured?: boolean;
     };
+    vk?: {
+      configured?: boolean;
+    };
+    email?: {
+      configured?: boolean;
+    };
   };
   errors?: string[];
   error?: string;
@@ -63,6 +69,38 @@ const leadToFormSubmitPayload = (payload: LeadPayload) => ({
   _captcha: 'false'
 });
 
+const postFormSubmit = async (url: string, payload: Record<string, string | undefined>) => {
+  const formBody = new URLSearchParams();
+
+  Object.entries(payload).forEach(([key, value]) => {
+    if (value !== undefined && value !== '') {
+      formBody.append(key, value);
+    }
+  });
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    },
+    body: formBody
+  });
+
+  let data: LeadCaptureResult = {};
+  try {
+    data = await response.json();
+  } catch {
+    data = {};
+  }
+
+  if (!response.ok) {
+    throw new Error(data.error || 'Не удалось отправить заявку.');
+  }
+
+  return data;
+};
+
 const postJson = async (url: string, payload: unknown) => {
   const response = await fetch(url, {
     method: 'POST',
@@ -101,7 +139,7 @@ export const submitLead = async (payload: LeadPayload): Promise<LeadCaptureResul
   }
 
   try {
-    await postJson(`https://formsubmit.co/ajax/${encodeURIComponent(LEAD_EMAIL)}`, leadToFormSubmitPayload(payload));
+    await postFormSubmit(`https://formsubmit.co/ajax/${encodeURIComponent(LEAD_EMAIL)}`, leadToFormSubmitPayload(payload));
     return { success: true };
   } catch {
     return {
