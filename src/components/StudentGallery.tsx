@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Camera, ZoomIn, X, MapPin } from 'lucide-react';
 import { SafeImage } from './SafeImage';
 
-import studentPhoto1 from '../assets/images/regenerated_image_1784574022752.png';
-import studentPhoto2 from '../assets/images/regenerated_image_1784574157459.png';
-import studentPhoto3 from '../assets/images/regenerated_image_1784574155225.png';
-import studentPhoto4 from '../assets/images/regenerated_image_1784574159272.png';
+import studentPhoto1 from '../assets/images/optimized/student-1.webp';
+import studentPhoto2 from '../assets/images/optimized/student-2.webp';
+import studentPhoto3 from '../assets/images/optimized/student-3.webp';
+import studentPhoto4 from '../assets/images/optimized/student-4.webp';
 
 interface StudentPhoto {
   id: number;

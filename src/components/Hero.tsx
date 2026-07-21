@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { BookOpen, Clock, Layers, Shield, Menu, X, ArrowRight, Play } from 'lucide-react';
 import { APP_METADATA, FALLBACK_IMAGES, USER_ASSET_PATHS } from '../data';
 import { SafeImage } from './SafeImage';
-import heroImage from '../assets/images/regenerated_image_1784470259651.jpg';
+import heroImage from '../assets/images/optimized/hero.webp';
 
 export const Hero: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

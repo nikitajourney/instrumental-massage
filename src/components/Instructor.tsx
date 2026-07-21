@@ -1,7 +1,7 @@
 import React from 'react';
 import { GraduationCap, CheckCircle2 } from 'lucide-react';
 import { SafeImage } from './SafeImage';
-import dmitryPhoto from '../assets/images/regenerated_image_1784470095818.jpg';
+import dmitryPhoto from '../assets/images/optimized/instructor.webp';
 import { FALLBACK_IMAGES } from '../data';
 
 export const Instructor: React.FC = () => {

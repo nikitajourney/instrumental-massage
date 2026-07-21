@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { AlertCircle, ShieldCheck, Heart, Sparkles, TrendingUp, HandIcon } from 'lucide-react';
 import { PROBLEMS, SOLUTIONS, FALLBACK_IMAGES, USER_ASSET_PATHS } from '../data';
 import { SafeImage } from './SafeImage';
-import scraperImage from '../assets/images/regenerated_image_1784470266992.jpg';
+import scraperImage from '../assets/images/optimized/problem-scraper.webp';
 
 export const ProblemSolution: React.FC = () => {
   return (

@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { Award, CheckCircle2, HeartHandshake, ShieldCheck, TrendingUp, Sparkles } from 'lucide-react';
 import { LEARNING_OUTCOMES, FALLBACK_IMAGES } from '../data';
 import { SafeImage } from './SafeImage';
-import certificatePhoto from '../assets/images/assets/regenerated_image_1784470095818-bQfBSkyC.jpg';
+import certificatePhoto from '../assets/images/optimized/teacher.webp';
 
 export const Certificate: React.FC = () => {
   return (

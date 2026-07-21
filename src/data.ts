@@ -1,12 +1,12 @@
 import { FreeLesson, CurriculumZone, FaqItem, Testimonial } from './types';
 
-import heroImg from './assets/images/regenerated_image_1784470259651.jpg';
-import scraperImg from './assets/images/assets/regenerated_image_1784470266992-CMFDSIfA.jpg';
-import teacherImg from './assets/images/assets/regenerated_image_1784470095818-bQfBSkyC.jpg';
-import certificateImg from './assets/images/regenerated_image_1784472151047.jpg';
-import practiceImg from './assets/images/regenerated_image_1784214270393.jpg';
-import lesson1PosterImg from './assets/images/regenerated_image_1784542651261.png';
-import lesson2PosterImg from './assets/images/regenerated_image_1784214270393.jpg';
+import heroImg from './assets/images/optimized/hero.webp';
+import scraperImg from './assets/images/optimized/scraper.webp';
+import teacherImg from './assets/images/optimized/teacher.webp';
+import certificateImg from './assets/images/optimized/teacher.webp';
+import practiceImg from './assets/images/optimized/practice.webp';
+import lesson1PosterImg from './assets/images/optimized/lesson1-poster.webp';
+import lesson2PosterImg from './assets/images/optimized/lesson2-poster.webp';
 
 export const APP_METADATA = {
   title: 'Инструментальный массаж',
@@ -30,7 +30,7 @@ export const FALLBACK_IMAGES = {
   scraper: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=800',
   teacher: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800',
   certificate: 'https://images.unsplash.com/photo-1589330694653-ded6df53f6ee?auto=format&fit=crop&q=80&w=1000',
-  practice: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=1000',
+  practice: practiceImg,
   lesson1_poster: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800',
   lesson2_poster: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=800'
 };
