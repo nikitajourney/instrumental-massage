@@ -219,6 +219,7 @@ export const Hero: React.FC = () => {
                   fallbackSrc={FALLBACK_IMAGES.hero}
                   alt="Инструментальный массаж спины скребком"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="eager"
                 />
 
                 {/* Gradient overlay */}

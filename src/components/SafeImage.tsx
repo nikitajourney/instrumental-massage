@@ -10,19 +10,15 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   fallbackSrc,
   alt = 'Изображение курса',
   className = '',
+  loading = 'lazy',
+  decoding = 'async',
   ...props
 }) => {
   const [imgSrc, setImgSrc] = useState<string>(localSrc);
   const [hasFailed, setHasFailed] = useState<boolean>(false);
 
   useEffect(() => {
-    const isLocal = localSrc && (localSrc.startsWith('/') || localSrc.startsWith('.') || !localSrc.startsWith('http'));
-    if (isLocal && !localSrc.includes('data:image')) {
-      const buster = localSrc.includes('?') ? `&t=${Date.now()}` : `?t=${Date.now()}`;
-      setImgSrc(localSrc + buster);
-    } else {
-      setImgSrc(localSrc);
-    }
+    setImgSrc(localSrc);
     setHasFailed(false);
   }, [localSrc]);
 
@@ -38,6 +34,8 @@ export const SafeImage: React.FC<SafeImageProps> = ({
       src={imgSrc}
       alt={alt}
       className={className}
+      loading={loading}
+      decoding={decoding}
       onError={handleError}
       referrerPolicy="no-referrer"
       {...props}
