@@ -150,7 +150,7 @@ export const LegalModal: React.FC = () => {
                   <div className="space-y-3">
                     <h5 className="font-bold text-turquoise-400 text-xs uppercase tracking-wider">5. Срок хранения данных и отзыв согласия</h5>
                     <p>
-                      Персональные данные хранятся и обрабатываются до достижения целей обработки или до момента отзыва согласия Пользователем. Пользователь вправе в любой момент отозвать свое согласие на обработку, обратившись к нам по официальному телефону <a href="tel:+790909100" className="text-turquoise-400 hover:underline">+7 (909) 091-00</a> или направив письменный запрос.
+                      Персональные данные хранятся и обрабатываются до достижения целей обработки или до момента отзыва согласия Пользователем. Пользователь вправе в любой момент отозвать свое согласие на обработку, обратившись к нам по официальному телефону <a href="tel:+79090714777" className="text-turquoise-400 hover:underline">+7 (909) 071-47-77</a> или направив письменный запрос.
                     </p>
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export const LegalModal: React.FC = () => {
                       <p className="text-white font-bold font-sans">ИП КАТАЕВ ДМИТРИЙ СЕРГЕЕВИЧ</p>
                       <p>ИНН: 741518264009</p>
                       <p>ОГРНИП: 321745600078123</p>
-                      <p>Телефон для связи: +7 (909) 091-00</p>
+                      <p>Телефон для связи: +7 (909) 071-47-77</p>
                     </div>
                   </div>
                 </div>
@@ -228,7 +228,7 @@ export const LegalModal: React.FC = () => {
                     <ol className="list-decimal list-inside pl-2 space-y-1.5">
                       <li>Свяжитесь напрямую с Исполнителем или менеджером поддержки Максимом удобным для вас способом:
                         <ul className="list-disc list-inside pl-4 mt-1 text-xs text-graphite-400 space-y-0.5 font-mono">
-                          <li>Телефон: <a href="tel:+790909100" className="text-turquoise-400 hover:underline">+7 (909) 091-00</a></li>
+                          <li>Телефон: <a href="tel:+79090714777" className="text-turquoise-400 hover:underline">+7 (909) 071-47-77</a></li>
                           <li>Max: <a href="https://max.ru/u/f9LHodD0cOLn5O61OFC7o-wpv8Oj8zmByLURYebcGWW6hpSB7f24X0ykiQA" target="_blank" rel="noopener noreferrer" className="text-turquoise-400 hover:underline">Поддержка Максима (Max)</a></li>
                         </ul>
                       </li>

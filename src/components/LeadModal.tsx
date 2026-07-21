@@ -332,7 +332,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
                         <span className="text-[10px] font-semibold text-graphite-200 group-hover:text-white transition-colors">Max</span>
                       </a>
                       <a
-                        href="tel:+790909100"
+                        href="tel:+79090714777"
                         className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-turquoise-400 hover:bg-turquoise-500/5 transition-all duration-200 group text-center"
                       >
                         <Phone className="w-4 h-4 text-turquoise-400 group-hover:scale-110 transition-transform duration-200 mb-1 shrink-0" />

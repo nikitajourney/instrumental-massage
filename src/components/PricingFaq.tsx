@@ -349,7 +349,7 @@ export const PricingFaq: React.FC = () => {
                         <span className="text-[10px] font-semibold text-graphite-200 group-hover:text-white transition-colors">Max</span>
                       </a>
                       <a
-                        href="tel:+790909100"
+                        href="tel:+79090714777"
                         className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-turquoise-400 hover:bg-turquoise-500/5 transition-all duration-200 group text-center"
                       >
                         <Phone className="w-4 h-4 text-turquoise-400 group-hover:scale-110 transition-transform duration-200 mb-1 shrink-0" />
@@ -515,7 +515,7 @@ export const PricingFaq: React.FC = () => {
             <div className="space-y-1 text-left">
               <p className="text-graphite-300 font-semibold">© 2026 Школа массажа Дмитрия Катаева</p>
               <p>ИП КАТАЕВ ДМИТРИЙ СЕРГЕЕВИЧ | ИНН: 741518264009</p>
-              <p>Тел. <a href="tel:+790909100" className="hover:text-turquoise-400 transition-colors font-mono font-semibold">+7 (909) 091-00</a></p>
+              <p>Тел. <a href="tel:+79090714777" className="hover:text-turquoise-400 transition-colors font-mono font-semibold">+7 (909) 071-47-77</a></p>
             </div>
             <div className="space-y-1.5 md:text-right text-left">
               <p>Не является медицинским пособием. Оздоровительные и физкультурные техники.</p>
