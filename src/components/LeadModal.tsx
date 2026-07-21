@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, User, Phone, Mail, Smartphone, Send, Lock, CheckCircle, AlertCircle, MessageCircle, ArrowRight } from 'lucide-react';
 import { APP_METADATA } from '../data';
 import { submitLead } from '../services/leadCapture';
+import { trackGoal } from '../services/analytics';
 
 interface LeadModalProps {
   defaultPrice?: string;
@@ -24,6 +25,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
 
   useEffect(() => {
     const handleOpen = () => {
+      trackGoal('open_lead_form', { form: 'modal' });
       setIsSuccess(false);
       setErrorMessage('');
       setTgConfigured(null);
@@ -87,6 +89,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
 
       if (data.success) {
         setIsSuccess(true);
+        trackGoal('lead_submit_success', { form: 'modal' });
         if (data.notifications && data.notifications.telegram) {
           setTgConfigured(data.notifications.telegram.configured);
         }
@@ -273,6 +276,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
                       href="https://monecle.com/buy/96990"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackGoal('click_pay_course', { placement: 'modal_form_direct' })}
                       className="text-xs text-turquoise-400 hover:text-turquoise-300 transition-colors font-semibold underline decoration-turquoise-400/30 hover:decoration-turquoise-300 inline-block"
                     >
                       Оплатить напрямую в один клик без формы
@@ -317,6 +321,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
                         href="https://t.me/massagecourseonline"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackGoal('click_direct_contact', { channel: 'telegram', placement: 'modal_form' })}
                         className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-turquoise-400 hover:bg-turquoise-500/5 transition-all duration-200 group text-center"
                       >
                         <MessageCircle className="w-4 h-4 text-turquoise-400 group-hover:scale-110 transition-transform duration-200 mb-1 shrink-0" />
@@ -326,6 +331,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
                         href="https://max.ru/u/f9LHodD0cOLn5O61OFC7o-wpv8Oj8zmByLURYebcGWW6hpSB7f24X0ykiQA"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackGoal('click_direct_contact', { channel: 'max', placement: 'modal_form' })}
                         className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-turquoise-400 hover:bg-turquoise-500/5 transition-all duration-200 group text-center"
                       >
                         <User className="w-4 h-4 text-turquoise-400 group-hover:scale-110 transition-transform duration-200 mb-1 shrink-0" />
@@ -333,6 +339,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
                       </a>
                       <a
                         href="tel:+79090714777"
+                        onClick={() => trackGoal('click_direct_contact', { channel: 'phone', placement: 'modal_form' })}
                         className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-turquoise-400 hover:bg-turquoise-500/5 transition-all duration-200 group text-center"
                       >
                         <Phone className="w-4 h-4 text-turquoise-400 group-hover:scale-110 transition-transform duration-200 mb-1 shrink-0" />
@@ -396,6 +403,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
                       href="https://monecle.com/buy/96990"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackGoal('click_pay_course', { placement: 'modal_success' })}
                       className="inline-flex w-full items-center justify-center space-x-2 bg-gradient-to-r from-turquoise-400 to-teal-500 hover:from-turquoise-500 hover:to-teal-600 text-graphite-950 font-extrabold py-3.5 rounded-xl shadow-lg transition-all cursor-pointer text-sm uppercase tracking-wider text-center"
                     >
                       <span>Оплатить курс (4500 ₽)</span>

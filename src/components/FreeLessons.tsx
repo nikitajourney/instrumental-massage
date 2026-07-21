@@ -4,6 +4,7 @@ import { Play, Clock, X, Lock, CheckCircle, Award } from 'lucide-react';
 import { FREE_LESSONS, FALLBACK_IMAGES } from '../data';
 import { FreeLesson } from '../types';
 import { SafeImage } from './SafeImage';
+import { trackGoal } from '../services/analytics';
 
 const getEmbedUrl = (url: string): string | null => {
   if (!url) return null;
@@ -63,6 +64,7 @@ export const FreeLessons: React.FC = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   const handleOpenVideo = (lesson: FreeLesson) => {
+    trackGoal('play_free_lesson', { lesson_id: lesson.id, lesson_title: lesson.title });
     setActiveLesson(lesson);
     setIsVideoPlaying(true);
   };
@@ -136,7 +138,10 @@ export const FreeLessons: React.FC = () => {
                   </h3>
                 </div>
                 <button
-                  onClick={() => handleOpenVideo(lesson)}
+                  onClick={() => {
+                    trackGoal('click_free_lesson', { placement: 'lesson_card', lesson_id: lesson.id });
+                    handleOpenVideo(lesson);
+                  }}
                   className="inline-flex items-center space-x-2 text-sm font-semibold text-turquoise-400 hover:text-turquoise-300 transition-colors pt-2 group/btn cursor-pointer"
                 >
                   <span>Смотреть урок бесплатно</span>
@@ -214,6 +219,7 @@ export const FreeLessons: React.FC = () => {
                 </div>
                 <button
                   onClick={() => {
+                    trackGoal('click_pay_course', { placement: 'free_lesson_modal', lesson_id: activeLesson.id });
                     handleCloseVideo();
                     const el = document.getElementById('pricing');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });

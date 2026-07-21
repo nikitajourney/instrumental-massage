@@ -4,6 +4,7 @@ import { BookOpen, Clock, Layers, Shield, Menu, X, ArrowRight, Play } from 'luci
 import { APP_METADATA, FALLBACK_IMAGES, USER_ASSET_PATHS } from '../data';
 import { SafeImage } from './SafeImage';
 import heroImage from '../assets/images/optimized/hero.webp';
+import { trackGoal } from '../services/analytics';
 
 export const Hero: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -88,6 +89,7 @@ export const Hero: React.FC = () => {
               href="https://monecle.com/buy/96990"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackGoal('click_pay_course', { placement: 'header' })}
               className="bg-transparent hover:bg-turquoise-500/10 text-turquoise-400 hover:text-white border border-turquoise-500/30 hover:border-turquoise-500 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 shadow-sm shadow-turquoise-500/5 cursor-pointer inline-block"
             >
               Оплатить курс
@@ -131,7 +133,10 @@ export const Hero: React.FC = () => {
                 href="https://monecle.com/buy/96990"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  trackGoal('click_pay_course', { placement: 'mobile_menu' });
+                  setIsMobileMenuOpen(false);
+                }}
                 className="w-full bg-gradient-to-r from-turquoise-500 to-turquoise-600 hover:from-turquoise-600 hover:to-turquoise-700 text-graphite-950 font-bold py-4 rounded-xl shadow-lg shadow-turquoise-500/20 flex items-center justify-center space-x-2 transition-all cursor-pointer text-center"
               >
                 <span>Оплатить за <span className="whitespace-nowrap">{APP_METADATA.priceCurrent}р.</span></span>
@@ -192,6 +197,7 @@ export const Hero: React.FC = () => {
                   href="https://monecle.com/buy/96990"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackGoal('click_pay_course', { placement: 'hero' })}
                   className="w-full sm:w-auto bg-gradient-to-r from-turquoise-500 to-turquoise-600 hover:from-turquoise-600 hover:to-turquoise-700 text-graphite-950 font-bold px-8 py-4.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-xl shadow-turquoise-500/20 flex items-center justify-center space-x-2 cursor-pointer text-center"
                   id="hero-cta-primary"
                 >
@@ -199,7 +205,10 @@ export const Hero: React.FC = () => {
                   <ArrowRight className="w-5 h-5" />
                 </a>
                 <button
-                  onClick={() => scrollToSection('free-lessons')}
+                  onClick={() => {
+                    trackGoal('click_free_lesson', { placement: 'hero' });
+                    scrollToSection('free-lessons');
+                  }}
                   className="w-full sm:w-auto bg-graphite-800/80 hover:bg-graphite-800 text-white font-medium px-8 py-4.5 rounded-xl border border-graphite-700 transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer"
                   id="hero-cta-secondary"
                 >

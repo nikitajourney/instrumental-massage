@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Coins, TrendingUp, Calculator, Clock, HelpCircle, ArrowRight } from 'lucide-react';
 import { APP_METADATA } from '../data';
+import { trackGoal, trackGoalOnce } from '../services/analytics';
 
 export const RoiCalculator: React.FC = () => {
   const [sessionPrice, setSessionPrice] = useState<number>(1500);
@@ -65,7 +66,10 @@ export const RoiCalculator: React.FC = () => {
                   max="6000"
                   step="100"
                   value={sessionPrice}
-                  onChange={(e) => setSessionPrice(Number(e.target.value))}
+                  onChange={(e) => {
+                    trackGoalOnce('use_roi_calculator', { field: 'session_price' });
+                    setSessionPrice(Number(e.target.value));
+                  }}
                   className="w-full h-1.5 bg-graphite-800 rounded-lg appearance-none cursor-pointer accent-turquoise-500"
                 />
                 <div className="flex justify-between text-[11px] text-graphite-500 font-mono">
@@ -87,7 +91,10 @@ export const RoiCalculator: React.FC = () => {
                   max="25"
                   step="1"
                   value={extraClients}
-                  onChange={(e) => setExtraClients(Number(e.target.value))}
+                  onChange={(e) => {
+                    trackGoalOnce('use_roi_calculator', { field: 'extra_clients' });
+                    setExtraClients(Number(e.target.value));
+                  }}
                   className="w-full h-1.5 bg-graphite-800 rounded-lg appearance-none cursor-pointer accent-turquoise-500"
                 />
                 <div className="flex justify-between text-[11px] text-graphite-500 font-mono">
@@ -150,6 +157,7 @@ export const RoiCalculator: React.FC = () => {
               {/* Action Button */}
               <button
                 onClick={() => {
+                  trackGoal('click_pay_course', { placement: 'roi_calculator' });
                   const el = document.getElementById('pricing');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}

@@ -4,6 +4,7 @@ import { Check, HelpCircle, ChevronDown, Send, Lock, Gift, Star, Phone, Smartpho
 import { FAQS, APP_METADATA } from '../data';
 import { InquiryFormData } from '../types';
 import { submitLead } from '../services/leadCapture';
+import { trackGoal } from '../services/analytics';
 
 export const PricingFaq: React.FC = () => {
   // FAQ accordion open state
@@ -61,6 +62,7 @@ export const PricingFaq: React.FC = () => {
 
       if (data.success) {
         setIsSubmitted(true);
+        trackGoal('lead_submit_success', { form: 'pricing' });
         if (data.notifications && data.notifications.telegram) {
           setTgConfigured(data.notifications.telegram.configured);
         }
@@ -289,6 +291,7 @@ export const PricingFaq: React.FC = () => {
                       href="https://monecle.com/buy/96990"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackGoal('click_pay_course', { placement: 'pricing_form_direct' })}
                       className="text-xs text-turquoise-400 hover:text-turquoise-300 transition-colors font-semibold underline decoration-turquoise-400/30 hover:decoration-turquoise-300 inline-block"
                     >
                       Оплатить напрямую в один клик без формы
@@ -334,6 +337,7 @@ export const PricingFaq: React.FC = () => {
                         href="https://t.me/massagecourseonline"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackGoal('click_direct_contact', { channel: 'telegram', placement: 'pricing_form' })}
                         className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-turquoise-400 hover:bg-turquoise-500/5 transition-all duration-200 group text-center"
                       >
                         <MessageCircle className="w-4 h-4 text-turquoise-400 group-hover:scale-110 transition-transform duration-200 mb-1 shrink-0" />
@@ -343,6 +347,7 @@ export const PricingFaq: React.FC = () => {
                         href="https://max.ru/u/f9LHodD0cOLn5O61OFC7o-wpv8Oj8zmByLURYebcGWW6hpSB7f24X0ykiQA"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackGoal('click_direct_contact', { channel: 'max', placement: 'pricing_form' })}
                         className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-turquoise-400 hover:bg-turquoise-500/5 transition-all duration-200 group text-center"
                       >
                         <User className="w-4 h-4 text-turquoise-400 group-hover:scale-110 transition-transform duration-200 mb-1 shrink-0" />
@@ -350,6 +355,7 @@ export const PricingFaq: React.FC = () => {
                       </a>
                       <a
                         href="tel:+79090714777"
+                        onClick={() => trackGoal('click_direct_contact', { channel: 'phone', placement: 'pricing_form' })}
                         className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-turquoise-400 hover:bg-turquoise-500/5 transition-all duration-200 group text-center"
                       >
                         <Phone className="w-4 h-4 text-turquoise-400 group-hover:scale-110 transition-transform duration-200 mb-1 shrink-0" />
@@ -382,6 +388,7 @@ export const PricingFaq: React.FC = () => {
                       href="https://monecle.com/buy/96990"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackGoal('click_pay_course', { placement: 'pricing_success' })}
                       className="inline-flex w-full items-center justify-center space-x-2 bg-gradient-to-r from-turquoise-400 to-teal-500 hover:from-turquoise-500 hover:to-teal-600 text-graphite-950 font-extrabold py-4 rounded-xl shadow-xl shadow-turquoise-500/20 transition-all cursor-pointer text-sm uppercase tracking-wider text-center"
                     >
                       <span>Оплатить курс (4500 ₽)</span>
@@ -502,6 +509,7 @@ export const PricingFaq: React.FC = () => {
               href="https://monecle.com/buy/96990"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackGoal('click_pay_course', { placement: 'final_cta' })}
               className="inline-flex items-center space-x-2 bg-gradient-to-r from-turquoise-500 to-turquoise-600 hover:from-turquoise-600 hover:to-turquoise-700 text-graphite-950 font-extrabold px-8 py-4 rounded-xl shadow-xl shadow-turquoise-500/20 transition-all cursor-pointer text-sm"
               id="final-cta-btn"
             >
@@ -515,7 +523,7 @@ export const PricingFaq: React.FC = () => {
             <div className="space-y-1 text-left">
               <p className="text-graphite-300 font-semibold">© 2026 Школа массажа Дмитрия Катаева</p>
               <p>ИП КАТАЕВ ДМИТРИЙ СЕРГЕЕВИЧ | ИНН: 741518264009</p>
-              <p>Тел. <a href="tel:+79090714777" className="hover:text-turquoise-400 transition-colors font-mono font-semibold">+7 (909) 071-47-77</a></p>
+              <p>Тел. <a href="tel:+79090714777" onClick={() => trackGoal('click_direct_contact', { channel: 'phone', placement: 'footer' })} className="hover:text-turquoise-400 transition-colors font-mono font-semibold">+7 (909) 071-47-77</a></p>
             </div>
             <div className="space-y-1.5 md:text-right text-left">
               <p>Не является медицинским пособием. Оздоровительные и физкультурные техники.</p>
