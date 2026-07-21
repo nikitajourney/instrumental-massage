@@ -99,6 +99,8 @@ export const Hero: React.FC = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 rounded-lg text-graphite-400 hover:text-white hover:bg-graphite-800/50 transition-colors cursor-pointer"
             id="mobile-menu-toggle"
+            aria-label={isMobileMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -174,7 +176,7 @@ export const Hero: React.FC = () => {
                   <span className="text-xs text-graphite-400 block uppercase tracking-wider font-mono">Специальная цена</span>
                   <div className="flex items-baseline space-x-3 mt-1">
                     <span className="text-3xl sm:text-4xl font-mono font-bold text-white">{APP_METADATA.priceCurrent} ₽</span>
-                    <span className="text-sm sm:text-base line-through text-graphite-600 font-mono">{APP_METADATA.priceOriginal} ₽</span>
+                    <span className="text-sm sm:text-base line-through text-graphite-500 font-mono">{APP_METADATA.priceOriginal} ₽</span>
                   </div>
                 </div>
                 <div className="h-10 w-px bg-graphite-800" />

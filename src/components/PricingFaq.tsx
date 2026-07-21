@@ -175,7 +175,7 @@ export const PricingFaq: React.FC = () => {
                     <span className="text-[11px] font-mono uppercase tracking-widest text-turquoise-400 font-semibold">Оформить заявку</span>
                     <div className="flex items-baseline justify-center sm:justify-start space-x-3">
                       <span className="text-3xl font-mono font-bold text-white">{APP_METADATA.priceCurrent} ₽</span>
-                      <span className="text-sm line-through text-graphite-600 font-mono">{APP_METADATA.priceOriginal} ₽</span>
+                      <span className="text-sm line-through text-graphite-500 font-mono">{APP_METADATA.priceOriginal} ₽</span>
                     </div>
                   </div>
 

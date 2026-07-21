@@ -115,9 +115,9 @@ export const RoiCalculator: React.FC = () => {
                   <span className="text-[10px] tracking-widest uppercase font-mono text-turquoise-400 font-semibold">ОКУПАЕМОСТЬ КУРСА</span>
                   <div className="flex items-baseline space-x-2">
                     <span className="text-4xl font-mono font-bold text-white">{paybackSessions}</span>
-                    <span className="text-sm text-graphite-400">сеансов массажа</span>
+                    <span className="text-sm text-graphite-300">сеансов массажа</span>
                   </div>
-                  <p className="text-xs text-graphite-400">
+                  <p className="text-xs text-graphite-300">
                     При цене {sessionPrice} ₽ за сеанс курс окупается всего за <span className="text-white font-bold">{paybackSessions} {paybackSessions === 1 ? 'процедуру' : paybackSessions < 5 ? 'процедуры' : 'процедур'}</span>!
                   </p>
                 </div>
@@ -128,11 +128,11 @@ export const RoiCalculator: React.FC = () => {
                 {/* Income details */}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-graphite-400">Доп. доход в месяц:</span>
+                    <span className="text-xs text-graphite-300">Доп. доход в месяц:</span>
                     <span className="text-base font-mono font-bold text-white">+{monthlyIncome.toLocaleString('ru-RU')} ₽</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-graphite-400">Доп. доход за 6 мес:</span>
+                    <span className="text-xs text-graphite-300">Доп. доход за 6 мес:</span>
                     <span className="text-base font-mono font-bold text-white">+{sixMonthsIncome.toLocaleString('ru-RU')} ₽</span>
                   </div>
                   

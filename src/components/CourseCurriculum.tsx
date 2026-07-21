@@ -34,7 +34,7 @@ export const CourseCurriculum: React.FC = () => {
                 className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-2xl relative overflow-hidden group hover:border-turquoise-500/30 transition-all duration-300"
               >
                 {/* Index water-mark */}
-                <span className="absolute right-4 top-2 text-7xl font-mono font-bold text-graphite-800/30 select-none group-hover:text-turquoise-500/10 transition-colors">
+                <span aria-hidden="true" className="absolute right-4 top-2 text-7xl font-mono font-bold text-graphite-800/30 select-none group-hover:text-turquoise-500/10 transition-colors">
                   0{idx + 1}
                 </span>
 
