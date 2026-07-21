@@ -33,13 +33,13 @@ const messengerLabels: Record<InquiryFormData['messenger'], string> = {
   phone: 'Звонок'
 };
 
-const isGithubPages = () => window.location.hostname.endsWith('github.io');
+const isLocalHost = () => ['localhost', '127.0.0.1', '0.0.0.0'].includes(window.location.hostname);
 
 const getApiUrl = () => {
-  const explicitUrl = getPublicEnv('VITE_LEAD_API_URL');
+  const explicitUrl = getPublicEnv('VITE_LEAD_API_URL')?.trim();
   if (explicitUrl) return explicitUrl;
 
-  return isGithubPages() ? '' : '/api/lead';
+  return isLocalHost() ? '/api/lead' : '';
 };
 
 const saveLeadBackup = (payload: LeadPayload) => {
