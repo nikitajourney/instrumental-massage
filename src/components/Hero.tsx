@@ -5,6 +5,7 @@ import { APP_METADATA, FALLBACK_IMAGES, USER_ASSET_PATHS } from '../data';
 import { SafeImage } from './SafeImage';
 import heroImage from '../assets/images/optimized/hero.webp';
 import { trackGoal } from '../services/analytics';
+import { getTrackedMonecleBuyUrl } from '../services/trackingLinks';
 
 export const Hero: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -86,7 +87,7 @@ export const Hero: React.FC = () => {
           {/* Header CTA Button */}
           <div className="hidden md:block">
             <a
-              href="https://monecle.com/buy/96990"
+              href={getTrackedMonecleBuyUrl()}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackGoal('click_pay_course', { placement: 'header' })}
@@ -130,7 +131,7 @@ export const Hero: React.FC = () => {
                 </button>
               ))}
               <a
-                href="https://monecle.com/buy/96990"
+                href={getTrackedMonecleBuyUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
@@ -194,7 +195,7 @@ export const Hero: React.FC = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <a
-                  href="https://monecle.com/buy/96990"
+                  href={getTrackedMonecleBuyUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackGoal('click_pay_course', { placement: 'hero' })}

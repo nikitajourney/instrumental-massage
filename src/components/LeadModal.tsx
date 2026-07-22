@@ -4,6 +4,7 @@ import { X, User, Phone, Mail, Smartphone, Send, Lock, CheckCircle, AlertCircle,
 import { APP_METADATA } from '../data';
 import { submitLead } from '../services/leadCapture';
 import { trackGoal } from '../services/analytics';
+import { getTrackedMonecleBuyUrl } from '../services/trackingLinks';
 
 interface LeadModalProps {
   defaultPrice?: string;
@@ -273,7 +274,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
 
                   <div className="text-center pt-1 pb-1">
                     <a
-                      href="https://monecle.com/buy/96990"
+                      href={getTrackedMonecleBuyUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackGoal('click_pay_course', { placement: 'modal_form_direct' })}
@@ -400,7 +401,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
 
                   <div className="space-y-3 pt-2">
                     <a
-                      href="https://monecle.com/buy/96990"
+                      href={getTrackedMonecleBuyUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackGoal('click_pay_course', { placement: 'modal_success' })}

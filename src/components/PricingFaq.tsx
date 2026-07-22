@@ -5,6 +5,7 @@ import { FAQS, APP_METADATA } from '../data';
 import { InquiryFormData } from '../types';
 import { submitLead } from '../services/leadCapture';
 import { trackGoal } from '../services/analytics';
+import { getTrackedMonecleBuyUrl } from '../services/trackingLinks';
 
 export const PricingFaq: React.FC = () => {
   // FAQ accordion open state
@@ -288,7 +289,7 @@ export const PricingFaq: React.FC = () => {
 
                   <div className="text-center pt-1 pb-1">
                     <a
-                      href="https://monecle.com/buy/96990"
+                      href={getTrackedMonecleBuyUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackGoal('click_pay_course', { placement: 'pricing_form_direct' })}
@@ -385,7 +386,7 @@ export const PricingFaq: React.FC = () => {
 
                   <div className="max-w-xs mx-auto">
                     <a
-                      href="https://monecle.com/buy/96990"
+                      href={getTrackedMonecleBuyUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackGoal('click_pay_course', { placement: 'pricing_success' })}
@@ -506,7 +507,7 @@ export const PricingFaq: React.FC = () => {
             </p>
 
             <a
-              href="https://monecle.com/buy/96990"
+              href={getTrackedMonecleBuyUrl()}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackGoal('click_pay_course', { placement: 'final_cta' })}
