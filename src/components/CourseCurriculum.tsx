@@ -150,7 +150,7 @@ export const CourseCurriculum: React.FC = () => {
                 Что конкретно <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise-400 to-emerald-400">входит в курс?</span>
               </h3>
               <p className="text-sm text-graphite-400 leading-relaxed font-sans">
-                Вы приобретаете не просто видеоматериалы, а готовую цифровую систему обучения «под ключ», спроектированную по методическим стандартам доп. образования.
+                Вы приобретаете не просто видеоматериалы, а структурированную цифровую программу с уроками, схемами, протоколами и поддержкой по организационным вопросам.
               </p>
               
               <div className="pt-2 hidden lg:block">

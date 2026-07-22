@@ -55,7 +55,7 @@ export const Certificate: React.FC = () => {
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center space-x-2 bg-turquoise-500/10 text-turquoise-400 px-3 py-1.5 rounded-lg border border-turquoise-500/20 text-xs font-semibold font-mono tracking-wider uppercase">
               <Award className="w-4 h-4" />
-              <span>Подтверждение квалификации</span>
+              <span>Подтверждение прохождения</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight text-white leading-tight">
@@ -63,7 +63,7 @@ export const Certificate: React.FC = () => {
             </h2>
 
             <p className="text-graphite-400 text-sm sm:text-base leading-relaxed font-sans">
-              Ваш профессионализм заслуживает красивого и авторитетного подтверждения. Сразу после просмотра всех видеоуроков и выполнения промежуточного теста в вашем аккаунте будет сформирован именной электронный сертификат школы.
+              После просмотра видеоуроков и выполнения промежуточного теста в аккаунте формируется именной электронный сертификат школы о прохождении курса. Он не является документом государственного образца и не подтверждает присвоение квалификации.
             </p>
           </div>
 
@@ -93,12 +93,12 @@ export const Certificate: React.FC = () => {
             <h3 className="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight">
               Главный результат:{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise-400 to-teal-400">
-                Здоровые суставы рук, рост дохода и WOW-эффект у клиентов
+                Бережная техника работы, новая услуга и уверенная практика
               </span>
             </h3>
 
             <p className="text-sm sm:text-base text-graphite-300 leading-relaxed font-sans">
-              Наш курс дает вам не просто технические приемы. Он дает вам долголетие в профессии. Снизив механическую перегрузку рук на 80%, вы сможете принимать больше людей за день, работать с крупными триггерами без усталости и предлагать клиентам инновационный, быстрый и физиологически обоснованный результат с первой минуты.
+              Курс помогает освоить технические приемы работы со скребком, научиться распределять нагрузку на руки и аккуратно внедрить новую услугу в практику. Фактический результат зависит от опыта специалиста, соблюдения техники безопасности и особенностей клиентов.
             </p>
           </div>
         </div>

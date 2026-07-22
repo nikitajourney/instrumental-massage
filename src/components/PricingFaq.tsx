@@ -145,7 +145,7 @@ export const PricingFaq: React.FC = () => {
                 <div className="w-5 h-5 rounded-full bg-turquoise-500/10 text-turquoise-400 flex items-center justify-center shrink-0">
                   <Check className="w-3.5 h-3.5" />
                 </div>
-                <span className="text-graphite-200">Именной электронный сертификат сразу после тестов</span>
+                <span className="text-graphite-200">Именной сертификат школы о прохождении курса</span>
               </div>
               <div className="flex items-center space-x-3 text-sm">
                 <div className="w-5 h-5 rounded-full bg-turquoise-500/10 text-turquoise-400 flex items-center justify-center shrink-0">
@@ -533,7 +533,7 @@ export const PricingFaq: React.FC = () => {
             </h3>
             
             <p className="text-xs sm:text-sm text-graphite-400 font-sans max-w-md mx-auto">
-              Нажмите кнопку ниже, чтобы перейти к форме регистрации и гарантировать себе скидку 50%. Начните практиковать бережный подход к своим рукам уже завтра!
+              Нажмите кнопку ниже, чтобы перейти к форме регистрации и сохранить текущую цену курса. Начните практиковать более бережный подход к своим рукам уже завтра.
             </p>
 
             <a
