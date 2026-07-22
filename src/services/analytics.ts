@@ -1,4 +1,5 @@
 const YANDEX_METRIKA_ID = 110922501;
+const VK_PIXEL_ID = 3781680;
 
 type AnalyticsGoal =
   | 'open_lead_form'
@@ -16,13 +17,23 @@ const firedGoals = new Set<string>();
 declare global {
   interface Window {
     ym?: (counterId: number, method: 'reachGoal', goal: AnalyticsGoal, params?: AnalyticsParams) => void;
+    _tmr?: Array<Record<string, unknown>>;
   }
 }
 
 export const trackGoal = (goal: AnalyticsGoal, params?: AnalyticsParams) => {
-  if (typeof window === 'undefined' || typeof window.ym !== 'function') return;
+  if (typeof window === 'undefined') return;
 
-  window.ym(YANDEX_METRIKA_ID, 'reachGoal', goal, params);
+  if (typeof window.ym === 'function') {
+    window.ym(YANDEX_METRIKA_ID, 'reachGoal', goal, params);
+  }
+
+  window._tmr?.push({
+    id: VK_PIXEL_ID,
+    type: 'reachGoal',
+    goal,
+    params,
+  });
 };
 
 export const trackGoalOnce = (goal: AnalyticsGoal, params?: AnalyticsParams) => {
