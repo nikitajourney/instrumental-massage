@@ -75,8 +75,8 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
       setErrorMessage('Пожалуйста, введите корректный номер телефона');
       return;
     }
-    if (!formData.email.trim() || !formData.email.includes('@')) {
-      setErrorMessage('Пожалуйста, введите корректный Email адрес');
+    if (formData.email.trim() && !formData.email.includes('@')) {
+      setErrorMessage('Пожалуйста, введите корректный Email адрес или оставьте поле пустым');
       return;
     }
     if (!formData.personalDataConsent) {
@@ -219,12 +219,11 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
                   <div className="space-y-1.5">
                     <label className="text-xs text-graphite-400 font-bold uppercase tracking-wider font-mono flex items-center space-x-1.5">
                       <Mail className="w-3.5 h-3.5 text-turquoise-400" />
-                      <span>Электронная почта (Email)</span>
+                      <span>Email, если удобно</span>
                     </label>
                     <input
                       type="email"
                       name="email"
-                      required
                       placeholder="example@mail.ru"
                       value={formData.email}
                       onChange={handleInputChange}
