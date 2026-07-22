@@ -28,7 +28,7 @@ const STUDENT_PHOTOS: StudentPhoto[] = [
     id: 2,
     name: 'Марина',
     city: 'Санкт-Петербург',
-    description: 'Работа со скребком IASTM в шейно-воротниковой зоне без чрезмерной нагрузки на пальцы рук.',
+    description: 'Работа со скребком в шейно-воротниковой зоне без чрезмерной нагрузки на пальцы рук.',
     imageUrl: studentPhoto2
   },
   {
@@ -168,7 +168,7 @@ export const StudentGallery: React.FC = () => {
                   </div>
                   <div className="flex justify-between text-xs font-mono text-graphite-400">
                     <span>Инструмент</span>
-                    <span className="text-white">Скребок IASTM</span>
+                    <span className="text-white">Массажный скребок</span>
                   </div>
                 </div>
               </div>
