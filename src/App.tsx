@@ -16,6 +16,7 @@ import { StudentGallery } from './components/StudentGallery';
 import { PricingFaq } from './components/PricingFaq';
 import { LeadModal } from './components/LeadModal';
 import { LegalModal } from './components/LegalModal';
+import { CookieConsent } from './components/CookieConsent';
 
 export default function App() {
   return (
@@ -62,6 +63,9 @@ export default function App() {
 
       {/* Interactive legal documents modal */}
       <LegalModal />
+
+      {/* Cookie and analytics consent */}
+      <CookieConsent />
     </div>
   );
 }

@@ -16,7 +16,9 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
     name: '',
     phone: '',
     email: '',
-    messenger: 'telegram' as 'telegram' | 'max' | 'viber' | 'phone'
+    messenger: 'telegram' as 'telegram' | 'max' | 'viber' | 'phone',
+    personalDataConsent: false,
+    advertisingConsent: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -35,7 +37,9 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
         name: '',
         phone: '',
         email: '',
-        messenger: 'telegram'
+        messenger: 'telegram',
+        personalDataConsent: false,
+        advertisingConsent: false
       });
       setIsOpen(true);
     };
@@ -55,8 +59,8 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
   }, [isOpen]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, type, value, checked } = e.target;
+    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
     setErrorMessage('');
   };
 
@@ -75,6 +79,10 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
       setErrorMessage('Пожалуйста, введите корректный Email адрес');
       return;
     }
+    if (!formData.personalDataConsent) {
+      setErrorMessage('Чтобы отправить заявку, подтвердите согласие на обработку персональных данных');
+      return;
+    }
 
     setIsSubmitting(true);
     setErrorMessage('');
@@ -85,6 +93,8 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
         phone: formData.phone,
         email: formData.email,
         messenger: formData.messenger,
+        personalDataConsent: formData.personalDataConsent,
+        advertisingConsent: formData.advertisingConsent,
         coursePrice: defaultPrice
       });
 
@@ -252,10 +262,52 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
                     </div>
                   </div>
 
+                  <div className="space-y-3 rounded-2xl border border-graphite-800 bg-graphite-950/70 p-4">
+                    <label className="flex items-start gap-3 text-left text-[11px] leading-relaxed text-graphite-300">
+                      <input
+                        type="checkbox"
+                        name="personalDataConsent"
+                        checked={formData.personalDataConsent}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-0.5 h-4 w-4 shrink-0 rounded border-graphite-700 bg-graphite-900 accent-turquoise-500"
+                      />
+                      <span>
+                        Я даю согласие на обработку персональных данных для обработки заявки, связи по обучению и
+                        предоставления доступа к курсу. Ознакомлен(а) с{' '}
+                        <a href="/consent-personal-data.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-turquoise-400 hover:underline">
+                          согласием
+                        </a>{' '}
+                        и{' '}
+                        <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-turquoise-400 hover:underline">
+                          политикой обработки персональных данных
+                        </a>
+                        .
+                      </span>
+                    </label>
+                    <label className="flex items-start gap-3 text-left text-[11px] leading-relaxed text-graphite-400">
+                      <input
+                        type="checkbox"
+                        name="advertisingConsent"
+                        checked={formData.advertisingConsent}
+                        onChange={handleInputChange}
+                        className="mt-0.5 h-4 w-4 shrink-0 rounded border-graphite-700 bg-graphite-900 accent-turquoise-500"
+                      />
+                      <span>
+                        Согласен(на) получать информационные и рекламные сообщения о курсе по телефону, email и в
+                        мессенджерах. Можно отказаться в любой момент.{' '}
+                        <a href="/consent-advertising.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-turquoise-400 hover:underline">
+                          Текст согласия
+                        </a>
+                        .
+                      </span>
+                    </label>
+                  </div>
+
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !formData.personalDataConsent}
                     className="w-full bg-gradient-to-r from-turquoise-500 to-turquoise-600 hover:from-turquoise-600 hover:to-turquoise-700 text-graphite-950 font-extrabold py-4 rounded-xl transition-all duration-300 shadow-xl shadow-turquoise-500/20 flex items-center justify-center space-x-2.5 disabled:opacity-50 cursor-pointer text-sm tracking-wide uppercase"
                     id="modal-submit"
                   >
@@ -287,27 +339,6 @@ export const LeadModal: React.FC<LeadModalProps> = ({ defaultPrice = '4500' }) =
                   <div className="flex items-center justify-center space-x-2 text-[10px] text-graphite-500 font-sans text-center">
                     <Lock className="w-3 h-3 text-graphite-600 shrink-0" />
                     <span>Безопасное соединение. Ваши данные никогда не передаются третьим лицам.</span>
-                  </div>
-
-                  {/* Legal consent disclaimer */}
-                  <div className="text-[10px] text-graphite-500 font-sans text-center px-2 leading-relaxed border-t border-graphite-850/60 pt-2.5">
-                    Нажимая кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с{' '}
-                    <button
-                      type="button"
-                      onClick={() => window.dispatchEvent(new CustomEvent('open-legal-modal', { detail: { type: 'privacy' } }))}
-                      className="text-turquoise-400 hover:underline inline cursor-pointer font-semibold"
-                    >
-                      Политикой конфиденциальности
-                    </button>{' '}
-                    и{' '}
-                    <button
-                      type="button"
-                      onClick={() => window.dispatchEvent(new CustomEvent('open-legal-modal', { detail: { type: 'offer' } }))}
-                      className="text-turquoise-400 hover:underline inline cursor-pointer font-semibold"
-                    >
-                      Договором оферты
-                    </button>
-                    {'.'}
                   </div>
 
                   {/* Direct Contact Buttons */}

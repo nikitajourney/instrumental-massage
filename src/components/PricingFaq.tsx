@@ -16,7 +16,9 @@ export const PricingFaq: React.FC = () => {
     name: '',
     phone: '',
     email: '',
-    messenger: 'telegram'
+    messenger: 'telegram',
+    personalDataConsent: false,
+    advertisingConsent: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -29,8 +31,9 @@ export const PricingFaq: React.FC = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const target = e.target;
+    const value = target instanceof HTMLInputElement && target.type === 'checkbox' ? target.checked : target.value;
+    setFormData(prev => ({ ...prev, [target.name]: value }));
     setFormError('');
   };
 
@@ -48,6 +51,10 @@ export const PricingFaq: React.FC = () => {
       setFormError('Пожалуйста, введите корректный Email адрес');
       return;
     }
+    if (!formData.personalDataConsent) {
+      setFormError('Чтобы отправить заявку, подтвердите согласие на обработку персональных данных');
+      return;
+    }
 
     setIsSubmitting(true);
     setFormError('');
@@ -58,6 +65,8 @@ export const PricingFaq: React.FC = () => {
         phone: formData.phone,
         email: formData.email,
         messenger: formData.messenger,
+        personalDataConsent: formData.personalDataConsent,
+        advertisingConsent: formData.advertisingConsent,
         coursePrice: APP_METADATA.priceCurrent
       });
 
@@ -85,7 +94,7 @@ export const PricingFaq: React.FC = () => {
   };
 
   const handleResetForm = () => {
-    setFormData({ name: '', phone: '', email: '', messenger: 'telegram' });
+    setFormData({ name: '', phone: '', email: '', messenger: 'telegram', personalDataConsent: false, advertisingConsent: false });
     setIsSubmitted(false);
     setTgConfigured(null);
     setTgError(null);
@@ -267,10 +276,52 @@ export const PricingFaq: React.FC = () => {
                     </div>
                   </div>
 
+                  <div className="space-y-3 rounded-2xl border border-graphite-800 bg-graphite-950/70 p-4">
+                    <label className="flex items-start gap-3 text-left text-[11px] leading-relaxed text-graphite-300">
+                      <input
+                        type="checkbox"
+                        name="personalDataConsent"
+                        checked={Boolean(formData.personalDataConsent)}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-0.5 h-4 w-4 shrink-0 rounded border-graphite-700 bg-graphite-900 accent-turquoise-500"
+                      />
+                      <span>
+                        Я даю согласие на обработку персональных данных для обработки заявки, связи по обучению и
+                        предоставления доступа к курсу. Ознакомлен(а) с{' '}
+                        <a href="/consent-personal-data.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-turquoise-400 hover:underline">
+                          согласием
+                        </a>{' '}
+                        и{' '}
+                        <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-turquoise-400 hover:underline">
+                          политикой обработки персональных данных
+                        </a>
+                        .
+                      </span>
+                    </label>
+                    <label className="flex items-start gap-3 text-left text-[11px] leading-relaxed text-graphite-400">
+                      <input
+                        type="checkbox"
+                        name="advertisingConsent"
+                        checked={Boolean(formData.advertisingConsent)}
+                        onChange={handleInputChange}
+                        className="mt-0.5 h-4 w-4 shrink-0 rounded border-graphite-700 bg-graphite-900 accent-turquoise-500"
+                      />
+                      <span>
+                        Согласен(на) получать информационные и рекламные сообщения о курсе по телефону, email и в
+                        мессенджерах. Можно отказаться в любой момент.{' '}
+                        <a href="/consent-advertising.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-turquoise-400 hover:underline">
+                          Текст согласия
+                        </a>
+                        .
+                      </span>
+                    </label>
+                  </div>
+
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !formData.personalDataConsent}
                     className="w-full bg-gradient-to-r from-turquoise-500 to-turquoise-600 hover:from-turquoise-600 hover:to-turquoise-700 text-graphite-950 font-extrabold py-4 rounded-xl transition-all duration-300 shadow-xl shadow-turquoise-500/20 flex items-center justify-center space-x-2.5 disabled:opacity-50 cursor-pointer text-sm tracking-wide uppercase"
                     id="submit-form-btn"
                   >
@@ -303,27 +354,6 @@ export const PricingFaq: React.FC = () => {
                   <div className="flex items-center justify-center space-x-2 text-[11px] text-graphite-500 font-sans">
                     <Lock className="w-3.5 h-3.5 text-graphite-600" />
                     <span>Безопасная оплата. Ваши персональные данные защищены.</span>
-                  </div>
-
-                  {/* Legal consent disclaimer */}
-                  <div className="text-[10px] text-graphite-500 font-sans text-center px-2 leading-relaxed border-t border-graphite-850/60 pt-3">
-                    Нажимая кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с{' '}
-                    <button
-                      type="button"
-                      onClick={() => window.dispatchEvent(new CustomEvent('open-legal-modal', { detail: { type: 'privacy' } }))}
-                      className="text-turquoise-400 hover:underline inline cursor-pointer font-semibold"
-                    >
-                      Политикой конфиденциальности
-                    </button>{' '}
-                    и{' '}
-                    <button
-                      type="button"
-                      onClick={() => window.dispatchEvent(new CustomEvent('open-legal-modal', { detail: { type: 'offer' } }))}
-                      className="text-turquoise-400 hover:underline inline cursor-pointer font-semibold"
-                    >
-                      Договором оферты
-                    </button>
-                    {'.'}
                   </div>
 
                   {/* Direct Contact Buttons */}
@@ -523,33 +553,30 @@ export const PricingFaq: React.FC = () => {
           <div className="mt-20 pt-8 border-t border-graphite-900 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-[10px] text-graphite-500 font-sans">
             <div className="space-y-1 text-left">
               <p className="text-graphite-300 font-semibold">© 2026 Школа массажа Дмитрия Катаева</p>
-              <p>ИП КАТАЕВ ДМИТРИЙ СЕРГЕЕВИЧ | ИНН: 741518264009</p>
+              <p>ИП КАТАЕВ ДМИТРИЙ СЕРГЕЕВИЧ | ИНН: 741518264009 | ОГРНИП: 326745600021913</p>
               <p>Тел. <a href="tel:+79090714777" onClick={() => trackGoal('click_direct_contact', { channel: 'phone', placement: 'footer' })} className="hover:text-turquoise-400 transition-colors font-mono font-semibold">+7 (909) 071-47-77</a></p>
             </div>
             <div className="space-y-1.5 md:text-right text-left">
               <p>Не является медицинским пособием. Оздоровительные и физкультурные техники.</p>
               <div className="flex flex-wrap gap-x-4 gap-y-1 justify-start md:justify-end">
-                <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new CustomEvent('open-legal-modal', { detail: { type: 'privacy' } }))}
-                  className="hover:text-turquoise-400 transition-colors cursor-pointer"
-                >
+                <a href="/privacy.html" className="hover:text-turquoise-400 transition-colors">
                   Политика конфиденциальности
-                </button>
-                <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new CustomEvent('open-legal-modal', { detail: { type: 'offer' } }))}
-                  className="hover:text-turquoise-400 transition-colors cursor-pointer"
-                >
+                </a>
+                <a href="/consent-personal-data.html" className="hover:text-turquoise-400 transition-colors">
+                  Согласие на обработку ПД
+                </a>
+                <a href="/consent-advertising.html" className="hover:text-turquoise-400 transition-colors">
+                  Согласие на рекламу
+                </a>
+                <a href="/cookies.html" className="hover:text-turquoise-400 transition-colors">
+                  Cookie и аналитика
+                </a>
+                <a href="/offer.html" className="hover:text-turquoise-400 transition-colors">
                   Договор оферты
-                </button>
-                <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new CustomEvent('open-legal-modal', { detail: { type: 'refund' } }))}
-                  className="hover:text-turquoise-400 transition-colors cursor-pointer"
-                >
+                </a>
+                <a href="/refund.html" className="hover:text-turquoise-400 transition-colors">
                   Условия возврата и гарантия
-                </button>
+                </a>
               </div>
             </div>
           </div>

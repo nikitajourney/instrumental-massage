@@ -24,6 +24,8 @@ export interface InquiryFormData {
   phone: string;
   email?: string;
   messenger: 'telegram' | 'max' | 'viber' | 'phone';
+  personalDataConsent?: boolean;
+  advertisingConsent?: boolean;
 }
 
 export interface CalculatorResult {
